@@ -37,6 +37,9 @@ class redPencilScala(private val _originalPrice:Double = 0.0) {
   }
 
   def increaseSalePrice(price:Double):Unit = {
+    if(price < _salePrice) {
+      return
+    }
     _salePrice = 0.0
     _saleDuration = 0
   }
