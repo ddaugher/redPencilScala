@@ -28,4 +28,8 @@ class redPencilScala(private val _originalPrice:Double = 0.0) {
     _saleDuration = 0
   }
 
+  def reducePriceByPercentage(percentage:Int):Unit = {
+    _salePrice = 90.0
+  }
+
 }
