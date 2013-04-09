@@ -14,6 +14,10 @@ class redPencilScala(private val _originalPrice:Double = 0.0) {
   }
 
   def saleDuration_=(days: Int): Unit = {
+    if (days > 30) {
+      endPromotion()
+      return
+    }
     _saleDuration = days
   }
 
