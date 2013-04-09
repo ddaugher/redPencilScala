@@ -33,4 +33,14 @@ class redPencilScalaSpec extends FunSuite with BeforeAndAfter {
     i.salePrice = 0.0
     assert(false === i.isPromo())
   }
+
+  test("should set proper values when 'end promotion'") {
+    i.salePrice = 90.0
+    i.saleDuration = 15
+    i.endPromotion()
+
+    assert(100.0 === i.originalPrice)
+    assert(0.0 === i.salePrice)
+    assert(0 === i.saleDuration)
+  }
 }
