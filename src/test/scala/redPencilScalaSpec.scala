@@ -23,4 +23,8 @@ class redPencilScalaSpec extends FunSuite with BeforeAndAfter {
   test("init should set sale duration = 0") {
     assert(0 === i.saleDuration)
   }
+
+  test("isPromo should return true when sale price is less than original price") {
+    assert(true === i.isPromo())
+  }
 }
