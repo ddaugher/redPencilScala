@@ -36,6 +36,11 @@ class redPencilScala(private val _originalPrice:Double = 0.0) {
     _saleDuration = 0
   }
 
+  def increaseSalePrice(price:Double):Unit = {
+    _salePrice = 0.0
+    _saleDuration = 0
+  }
+
   def reducePriceByPercentage(percentage:Int):Unit = {
     if (isInvalidPercentage(percentage)) return
     if (_originalPriceDuration < 30) return
