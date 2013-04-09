@@ -49,11 +49,16 @@ class redPencilScala(private val _originalPrice:Double = 0.0) {
     if (isInvalidPercentage(percentage)) return
     if (_originalPriceDuration < 30) return
     val newPrice: Double = getNewPrice(percentage)
+    if (hasOverallReductionBeenReached(newPrice)) return
+    _salePrice = newPrice
+  }
+
+  private def hasOverallReductionBeenReached(newPrice: Double): Boolean = {
     if ((_originalPrice - newPrice) / 100.0 > .30) {
       endPromotion()
-      return
+      return true
     }
-    _salePrice = newPrice
+    false
   }
 
   private def getNewPrice(percentage: Int): Double = {
