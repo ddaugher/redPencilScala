@@ -13,10 +13,19 @@ class redPencilScala(private val _originalPrice:Double = 0.0) {
     _salePrice = price
   }
 
+  def saleDuration_=(days: Int): Unit = {
+    _saleDuration = days
+  }
+
   def isPromo():Boolean = {
     if (_salePrice == 0.0) return false
     if (_salePrice < _originalPrice) return true
     false
+  }
+
+  def endPromotion():Unit = {
+    _salePrice = 0.0
+    _saleDuration = 0
   }
 
 }
