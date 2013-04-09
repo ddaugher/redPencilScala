@@ -8,4 +8,6 @@ class redPencilScala(private val _originalPrice:Double = 0.0) {
   def originalPriceDuration:Int = _originalPriceDuration
   def salePrice:Double = _salePrice
   def saleDuration:Int = _saleDuration
+
+  def isPromo()
 }
