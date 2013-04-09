@@ -39,10 +39,18 @@ class redPencilScala(private val _originalPrice:Double = 0.0) {
   def reducePriceByPercentage(percentage:Int):Unit = {
     if (isInvalidPercentage(percentage)) return
     if (_originalPriceDuration < 30) return
-    val newPrice:Double = (100.0 - percentage) / 100.0 * (if(_salePrice != 0.0) _salePrice else _originalPrice)
+    val newPrice: Double = getNewPrice(percentage)
     _salePrice = newPrice
   }
 
+  private def getNewPrice(percentage: Int): Double = {
+    val newPrice: Double = (100.0 - percentage) / 100.0 * getCurrentPrice
+    newPrice
+  }
+
+  private def getCurrentPrice: Double = {
+    (if (_salePrice != 0.0) _salePrice else _originalPrice)
+  }
 
   private def isInvalidPercentage(percentage: Int): Boolean = {
     if (percentage < 5) return true
