@@ -48,4 +48,9 @@ class redPencilScalaSpec extends FunSuite with BeforeAndAfter {
     i.reducePriceByPercentage(10)
     assert(90.0 === i.salePrice)
   }
+
+  test("should reduce original price by a different percentage") {
+    i.reducePriceByPercentage(20)
+    assert(80.0 === i.salePrice)
+  }
 }
