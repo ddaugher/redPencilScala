@@ -40,12 +40,14 @@ class redPencilScalaSpec extends FunSuite with BeforeAndAfter {
     assert(0 === i.saleDuration)
   }
 
-  ignore("should reduce original price") {
+  test("should reduce original price") {
+    i.originalPriceDuration = 30
     i.reducePriceByPercentage(10)
     assert(90.0 === i.salePrice)
   }
 
-  ignore("should reduce original price by a different percentage") {
+  test("should reduce original price by a different percentage") {
+    i.originalPriceDuration = 30
     i.reducePriceByPercentage(20)
     assert(80.0 === i.salePrice)
   }
@@ -59,5 +61,12 @@ class redPencilScalaSpec extends FunSuite with BeforeAndAfter {
     i.reducePriceByPercentage(10)
     assert(0.0 === i.salePrice)
     assert(false === i.isPromo())
+  }
+
+  test("should reduce original price only when original price duration greater than 30 days") {
+    i.originalPriceDuration = 30
+    i.reducePriceByPercentage(10)
+    assert(90.0 === i.salePrice)
+    assert(true === i.isPromo())
   }
 }
