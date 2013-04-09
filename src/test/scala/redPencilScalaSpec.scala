@@ -12,10 +12,6 @@ class redPencilScalaSpec extends FunSuite with BeforeAndAfter {
     assert(100.0 === i.originalPrice)
   }
 
-  test("init should set original price duration = 0") {
-    assert(0 === i.originalPriceDuration)
-  }
-
   test("init of item should set sale price = 0.0") {
     assert(0.0 === i.salePrice)
   }
@@ -52,5 +48,16 @@ class redPencilScalaSpec extends FunSuite with BeforeAndAfter {
   test("should reduce original price by a different percentage") {
     i.reducePriceByPercentage(20)
     assert(80.0 === i.salePrice)
+  }
+
+  test("init should set original price duration = 0") {
+    assert(0 === i.originalPriceDuration)
+  }
+
+  test("should not reduce original price when original price has not been stable for 30 days") {
+    i.originalPriceDuration = 29
+    i.reducePriceByPercentage(10)
+    assert(0.0 === i.salePrice)
+    assert(false === i.isPromo())
   }
 }
