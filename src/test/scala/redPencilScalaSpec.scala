@@ -104,4 +104,15 @@ class redPencilScalaSpec extends FunSuite with BeforeAndAfter {
     assert(15 === i.saleDuration)
     assert(true === i.isPromo())
   }
+
+  test("if sale price reduced so overall reduction greater than 30 percent... promo ends") {
+    i.originalPriceDuration = 30
+    i.reducePriceByPercentage(10)
+    i.reducePriceByPercentage(10)
+    assert(true === i.isPromo())
+    i.reducePriceByPercentage(15)
+    assert(0.0 === i.salePrice)
+    assert(0 === i.saleDuration)
+    assert(false === i.isPromo())
+  }
 }
