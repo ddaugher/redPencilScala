@@ -17,6 +17,10 @@ class redPencilScala(private val _originalPrice:Double = 0.0) {
     _saleDuration = days
   }
 
+  def originalPriceDuration_=(price: Int): Unit = {
+    _originalPriceDuration = price
+  }
+
   def isPromo():Boolean = {
     if (_salePrice == 0.0) return false
     if (_salePrice < _originalPrice) return true
@@ -29,6 +33,7 @@ class redPencilScala(private val _originalPrice:Double = 0.0) {
   }
 
   def reducePriceByPercentage(percentage:Int):Unit = {
+    if (_originalPriceDuration < 30) return
     val newPrice:Double = (100.0 - percentage) / 100.0 * _originalPrice
     _salePrice = newPrice
   }
